@@ -40,11 +40,16 @@
             user-select: none;
         }
 
+        .fixed-top{
+            background: rgba(0, 0, 0, 0.5)!important;
+        }
+
         @media (min-width: 768px) {
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
             }
         }
+        
     </style>
 
 
@@ -57,7 +62,7 @@
 
     <header>
         <!-- Fixed navbar -->
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Fixed navbar</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -80,24 +85,24 @@
     <link href="https://getbootstrap.com/docs/5.0/examples/sign-in/signin.css" rel="stylesheet">
 
     <main class="form-signin">
-        <form>
+        <form action="index.php" method="POST">
+
+            <input type="hidden" name="section" value="contact">
+            <input type="hidden" name="action" value="submitForm">
+
+            
             <h1 class="h3 mb-3 fw-normal">Contact Us!</h1>
 
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="email" class="form-control" id="floatingInput" name="email" value="" placeholder="name@example.com">
                 <label for="floatingInput">Email address</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                <label for="floatingPassword">Password</label>
+                <input class="form-control" id="comment" name="comment" value="">
+                <label for="floatingPassword">Message</label>
             </div>
 
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
-            </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Send</button>
             <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
         </form>
     </main>
