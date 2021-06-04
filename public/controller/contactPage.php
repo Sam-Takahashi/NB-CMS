@@ -2,18 +2,41 @@
 
 class ContactController extends MasterController
 {
+    public function runBeforeAction()
+    {
+        // if the user has submitted the form return true or false
+        if ($_SESSION['has_submitted_the_form'] ?? 0 == 1) {
+            $variables['title'] = 'All Done!';
+            $variables['content'] = 'You have already sent the message.';
+
+            $temps = new Template('default');
+            $temps->view('static-page', $variables);
+
+            return false;
+        }
+        return true;
+    }
 
     function defaultAction()
     {
-        include 'view/contact-us.html';
+        $variables['title'] = 'Contact Us!';
+        $variables['content'] = 'Write us something plez';
+
+        $temps = new Template('default');
+        $temps->view('contact/contact-us', $variables);
     }
     function submitFormAction()
     {
         // validate
         // store data
         // submit data, etc
+        $_SESSION['has_submitted_the_form'] = 1;
 
-        // show a thank you page
-        include 'view/contact-us-ty-page.html';
+
+        $variables['title'] = 'Thank you for your message!';
+        $variables['content'] = 'We will get back to you in two business days.';
+
+        $temps = new Template('default');
+        $temps->view('static-page', $variables);
     }
 }
