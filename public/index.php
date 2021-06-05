@@ -6,6 +6,14 @@ define('VIEW_PATH', ROOT_PATH . DIRECTORY_SEPARATOR . 'view' . DIRECTORY_SEPARAT
 
 require_once ROOT_PATH . 'src/MasterController.php';
 require_once ROOT_PATH . 'src/Template.php';
+require_once ROOT_PATH . 'src/DatabaseConnection.php';
+require_once ROOT_PATH . 'model/Page.php';
+
+
+// Connect to MySQL DB using driver invocation
+DatabaseConnection::connect('localhost', 'darwin_cms', '3307', 'root', '');
+
+
 
 // if / else logic
 

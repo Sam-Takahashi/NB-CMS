@@ -6,8 +6,14 @@ class ContactController extends MasterController
     {
         // if the user has submitted the form return true or false
         if ($_SESSION['has_submitted_the_form'] ?? 0 == 1) {
-            $variables['title'] = 'All Done!';
-            $variables['content'] = 'You have already sent the message.';
+
+            $dbh = DatabaseConnection::getInstance();
+            $dbc = $dbh->getConnection();
+
+
+            $pageObj = new Page($dbc);
+            $pageObj->findById(5);
+            $variables['pageObj'] = $pageObj;
 
             $temps = new Template('default');
             $temps->view('static-page', $variables);
@@ -19,8 +25,14 @@ class ContactController extends MasterController
 
     function defaultAction()
     {
-        $variables['title'] = 'Contact Us!';
-        $variables['content'] = 'Write us something plez';
+
+        $dbh = DatabaseConnection::getInstance();
+        $dbc = $dbh->getConnection();
+
+        // pageObj is a array[$id, $title, $content]
+        $pageObj = new Page($dbc);
+        $pageObj->findById(3);
+        $variables['pageObj'] = $pageObj;
 
         $temps = new Template('default');
         $temps->view('contact/contact-us', $variables);
@@ -33,8 +45,15 @@ class ContactController extends MasterController
         $_SESSION['has_submitted_the_form'] = 1;
 
 
-        $variables['title'] = 'Thank you for your message!';
-        $variables['content'] = 'We will get back to you in two business days.';
+        // $variables['title'] = 'Thank you for your message!';
+        // $variables['content'] = 'We will get back to you in two business days.';
+        $dbh = DatabaseConnection::getInstance();
+        $dbc = $dbh->getConnection();
+
+
+        $pageObj = new Page($dbc);
+        $pageObj->findById(4);
+        $variables['pageObj'] = $pageObj;
 
         $temps = new Template('default');
         $temps->view('static-page', $variables);
