@@ -28,6 +28,9 @@ abstract class Entity
         $databaseData = $stmt->fetch();
 
         // $stmt->debugDumpParams();
+        if($databaseData){
+            $this->setValues($databaseData);
+        }
         $this->setValues($databaseData);
     }
 
