@@ -1,17 +1,20 @@
 <?php
 
-class HomePageConrtoller extends MasterController
+class PageController extends MasterController
 {
     function defaultAction()
     {
-
+        // $variables['title'] = 'About Us page Title';
+        // $variables['content'] = 'About Us page Content';
         $dbh = DatabaseConnection::getInstance();
         $dbc = $dbh->getConnection();
 
-// pageObj is a array[$id, $title, $content]
+
         $pageObj = new Page($dbc);
-        $pageObj->findById(1);
+        //-------------($fieldName, $fieldValue)
+        $pageObj->findBy('id', $this->entityId);
         $variables['pageObj'] = $pageObj;
+
 
         $temps = new Template('default');
         $temps->view('static-page', $variables);

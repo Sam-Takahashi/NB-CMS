@@ -3,6 +3,7 @@
 
 class MasterController
 {
+    protected $entityId;
 
     function runAction($actionName)
     {
@@ -20,5 +21,11 @@ class MasterController
         } else {
             include 'view/status-pages/404.html';
         }
+    }
+
+    // this function is to grab the entityId from the db and is called in the PageController
+    public function setEntityId($entityId)
+    {
+        $this->entityId = $entityId;
     }
 }

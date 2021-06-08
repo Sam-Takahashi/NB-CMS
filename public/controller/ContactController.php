@@ -12,7 +12,7 @@ class ContactController extends MasterController
 
 
             $pageObj = new Page($dbc);
-            $pageObj->findById(5);
+            $pageObj->findBy('id', $this->entityId);
             $variables['pageObj'] = $pageObj;
 
             $temps = new Template('default');
@@ -31,7 +31,7 @@ class ContactController extends MasterController
 
         // pageObj is a array[$id, $title, $content]
         $pageObj = new Page($dbc);
-        $pageObj->findById(3);
+        $pageObj->findBy('id', $this->entityId);
         $variables['pageObj'] = $pageObj;
 
         $temps = new Template('default');
@@ -52,7 +52,7 @@ class ContactController extends MasterController
 
 
         $pageObj = new Page($dbc);
-        $pageObj->findById(4);
+        $pageObj->findBy('id', $this->entityId);
         $variables['pageObj'] = $pageObj;
 
         $temps = new Template('default');
