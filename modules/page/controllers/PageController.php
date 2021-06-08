@@ -17,6 +17,6 @@ class PageController extends MasterController
 
 
         $temps = new Template('default');
-        $temps->view('static-page', $variables);
+        $temps->view('page/views/static-page', $variables);
     }
 }
