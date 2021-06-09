@@ -13,6 +13,11 @@ require_once ROOT_PATH . 'src/DatabaseConnection.php';
 require_once ROOT_PATH . 'src/Entity.php';
 require_once ROOT_PATH . 'src/Router.php';
 require_once ROOT_PATH . 'src/Auth.php';
+require_once ROOT_PATH . 'src/Validation.php';
+require_once ROOT_PATH . 'src/validationRules/ValidateMin.php';
+require_once ROOT_PATH . 'src/validationRules/ValidateMax.php';
+require_once ROOT_PATH . 'src/validationRules/ValidateEmail.php';
+require_once ROOT_PATH . 'src/validationRules/ValidateSpecialChar.php';
 require_once MODULE_PATH . 'page/models/Page.php';
 require_once MODULE_PATH . 'user/models/User.php';
 

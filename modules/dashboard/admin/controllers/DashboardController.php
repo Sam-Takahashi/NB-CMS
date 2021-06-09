@@ -34,18 +34,40 @@ class DashboardController extends MasterController
             $username = $_POST['username'] ?? '';
             $password = $_POST['password'] ?? '';
 
-            // lesson9 31:37 implement authentication
-            $auth = new Auth();
-            if ($auth->checkLogin($username, $password)) {
-                // all is good
-                $_SESSION['is_admin'] = 1;
-                header('Location: /myCMStwo/public/admin/index.php');
-                exit();
+            // check validation PASSWORD
+            $validatus = new Validation();
+
+            if (!$validatus
+                ->addRule(new ValidateMin(3))
+                ->addRule(new ValidateMax(20))
+                ->addRule(new ValidateSpecialChar())
+                ->validate($password)) {
+                $_SESSION['validationRules']['error'] = "Password must be between 3 and 20 chars and must contain one special character.";
             }
-            var_dump('git rehkt');
+            if (!$validatus
+                ->addRule(new ValidateMin(3))
+                ->addRule(new ValidateEmail())
+                ->validate($username)) {
+                $_SESSION['validationRules']['error'] = "Everythang bout ur email is wrong.";
+            }
+
+
+            if (($_SESSION['validationRules']['error'] ?? '') == '') {
+                // lesson9 31:37 implement authentication
+                $auth = new Auth();
+                if ($auth->checkLogin($username, $password)) {
+                    // all is good
+                    $_SESSION['is_admin'] = 1;
+                    header('Location: /myCMStwo/public/admin/index.php');
+                    exit();
+                }
+                $_SESSION['validationRules']['error'] = "Username or password is incorrect.";
+            }  // var_dump('git rehkt');
+
         }
 
 
         include VIEW_PATH . 'admin/login.html';
+        unset($_SESSION['validationRules']['error']);
     }
 }
