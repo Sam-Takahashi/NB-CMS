@@ -1,6 +1,6 @@
 <?php
 
-class ValidateMax
+class ValidateMax implements ValidationRuleInterface
 {
 
     private $maximum;
@@ -18,5 +18,10 @@ class ValidateMax
             return false;
         }
         return true;
+    }
+
+    function getErrMsg()
+    {
+        return "Maximum of" . $this->maximum . "characters.";
     }
 }

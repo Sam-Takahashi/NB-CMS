@@ -24,8 +24,10 @@ class DashboardController extends MasterController
 
     function defaultAction()
     {
-
-        echo "Welcome to the administration";
+        $variables = [];
+        // $this->template->view('page/admin/views/page-list', $variables);
+        header('Location: /myCMStwo/public/admin/index.php?module=page');
+        exit();
     }
 
     function loginAction()
@@ -40,15 +42,16 @@ class DashboardController extends MasterController
             if (!$validatus
                 ->addRule(new ValidateMin(3))
                 ->addRule(new ValidateMax(20))
-                ->addRule(new ValidateSpecialChar())
+                //                ->addRule(new ValidateNoEmptySpaces())
+                //                ->addRule(new ValidateSpecialChar())
                 ->validate($password)) {
-                $_SESSION['validationRules']['error'] = "Password must be between 3 and 20 chars and must contain one special character.";
+                $_SESSION['validationRules']['error'] = $validatus->getAllErrorMessages();
             }
             if (!$validatus
                 ->addRule(new ValidateMin(3))
-                ->addRule(new ValidateEmail())
+                //               ->addRule(new ValidateEmail())
                 ->validate($username)) {
-                $_SESSION['validationRules']['error'] = "Everythang bout ur email is wrong.";
+                $_SESSION['validationRules']['error'] = $validatus->getAllErrorMessages();
             }
 
 
@@ -61,7 +64,7 @@ class DashboardController extends MasterController
                     header('Location: /myCMStwo/public/admin/index.php');
                     exit();
                 }
-                $_SESSION['validationRules']['error'] = "Username or password is incorrect.";
+                $_SESSION['validationRules']['error'] = $validatus->getAllErrorMessages();
             }  // var_dump('git rehkt');
 
         }

@@ -4,6 +4,7 @@
 class MasterController
 {
     protected $entityId;
+    public $template;
 
     function runAction($actionName)
     {

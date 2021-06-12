@@ -15,8 +15,7 @@ class ContactController extends MasterController
             $pageObj->findBy('id', $this->entityId);
             $variables['pageObj'] = $pageObj;
 
-            $temps = new Template('default');
-            $temps->view('page/contact/views/static-page', $variables);
+            $this->template->view('page/contact/views/static-page', $variables);
 
             return false;
         }
@@ -34,8 +33,7 @@ class ContactController extends MasterController
         $pageObj->findBy('id', $this->entityId);
         $variables['pageObj'] = $pageObj;
 
-        $temps = new Template('default');
-        $temps->view('contact/views/contact-us', $variables);
+        $this->template->view('contact/views/contact-us', $variables);
     }
     function submitFormAction()
     {
@@ -55,7 +53,6 @@ class ContactController extends MasterController
         $pageObj->findBy('id', $this->entityId);
         $variables['pageObj'] = $pageObj;
 
-        $temps = new Template('default');
-        $temps->view('page/contact/views/static-page', $variables);
+        $this->template->view('page/contact/views/static-page', $variables);
     }
 }

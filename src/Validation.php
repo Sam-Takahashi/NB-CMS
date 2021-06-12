@@ -4,8 +4,9 @@ class Validation
 {
 
     private $rules;
+    private $errorMessages = [];
 
-    public function addRule($rule)
+    public function addRule(ValidationRuleInterface $rule)
     {
         $this->rules[] = $rule;
         // by returning $this(addRule) becomes the entire object allowing us to add multiple(chainable) rules in DashboardController($validatus)
@@ -18,10 +19,17 @@ class Validation
         foreach ($this->rules as $rule) {
             $ruleValidation = $rule->validateRule($value);
             if (!$ruleValidation) {
+                $this->errorMessages[] = $rule->getErrMsg();
                 return false;
             }
         }
 
         return true;
+    }
+
+    // return all error messages(array?)
+    public function getAllErrorMessages()
+    {
+        return $this->errorMessages;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class ValidateEmail
+class ValidateEmail implements ValidationRuleInterface
 {
     function validateRule($value)
     {
@@ -10,5 +10,9 @@ class ValidateEmail
             return false;
         }
         return true;
+    }
+    function getErrMsg()
+    {
+        return "Not a valid email address";
     }
 }

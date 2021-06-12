@@ -1,9 +1,9 @@
 <?php
 
-class ValidateSpecialChar
+class ValidateSpecialChar implements ValidationRuleInterface
 {
 
-    private $rule; 
+    private $rule;
 
     public function __construct($rule = "/[^a-zA-z0-9]+/")
     {
@@ -17,5 +17,9 @@ class ValidateSpecialChar
             return false;
         }
         return true;
+    }
+    function getErrMsg()
+    {
+        return "Use at least one special character.";
     }
 }

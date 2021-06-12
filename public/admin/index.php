@@ -7,6 +7,7 @@ define('MODULE_PATH', ROOT_PATH . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SE
 
 define('ENCRYPTION_SALT', 'fkjdtw4554fkdsalf;21djsaf987978kdsasdkfj');
 
+require_once ROOT_PATH . 'src/interfaces/ValidationRuleInterface.php';
 require_once ROOT_PATH . 'src/MasterController.php';
 require_once ROOT_PATH . 'src/Template.php';
 require_once ROOT_PATH . 'src/DatabaseConnection.php';
@@ -18,6 +19,7 @@ require_once ROOT_PATH . 'src/validationRules/ValidateMin.php';
 require_once ROOT_PATH . 'src/validationRules/ValidateMax.php';
 require_once ROOT_PATH . 'src/validationRules/ValidateEmail.php';
 require_once ROOT_PATH . 'src/validationRules/ValidateSpecialChar.php';
+require_once ROOT_PATH . 'src/validationRules/ValidateNoEmptySpaces.php';
 require_once MODULE_PATH . 'page/models/Page.php';
 require_once MODULE_PATH . 'user/models/User.php';
 
@@ -36,5 +38,13 @@ if ($module == 'dashboard') {
     include MODULE_PATH . 'dashboard/admin/controllers/DashboardController.php';
 
     $dashboardController = new DashboardController();
+    $dashboardController->template = new Template('admin/layout/default');
     $dashboardController->runAction($action);
+} elseif ($module = 'page') {
+
+    include MODULE_PATH . 'page/admin/controllers/PageController.php';
+
+    $pageController = new PageController();
+    $pageController->template = new Template('admin/layout/default');
+    $pageController->runAction($action);
 }

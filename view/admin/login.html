@@ -53,8 +53,10 @@
         <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" value="<?=$_POST['password'] ?? '' ?>" required>
 
         <div class="text-danger">
-            <?php echo $_SESSION['validationRules']['error'] ?? '' ?>
+            <?php foreach($_SESSION['validationRules']['error'] ?? [] as $error) { ?>
             <!-- <?=$_SESSION['validationRules']['error'] ?? '' ?> -->
+                <?php echo $error; ?> <br />
+            <?php }?>
         </div>
 
         <div class="checkbox mb-3">

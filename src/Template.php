@@ -14,6 +14,6 @@ class Template
     {
         extract($variables);
 
-        include VIEW_PATH . 'layout/' . $this->layout . '.html';
+        include VIEW_PATH . $this->layout . '.html';
     }
 }
