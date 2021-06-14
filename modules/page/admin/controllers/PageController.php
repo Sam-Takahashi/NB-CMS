@@ -22,6 +22,18 @@ class PageController extends MasterController
     function defaultAction()
     {
         $variables = [];
+
+        $dbh = DatabaseConnection::getInstance();
+        $dbc = $dbh->getConnection();
+
+        $pageHandler = new Page($dbc);
+        $pages = $pageHandler->findAll();
+        $variables['pages'] = $pages;
+
+        // echo '<pre>';
+        // var_dump($pages);
+        // echo '</pre>';
+
         $this->template->view('page/admin/views/page-list', $variables);
     }
 }
