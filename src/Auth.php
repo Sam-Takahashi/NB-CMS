@@ -28,6 +28,7 @@ class Auth
         // $tmp = date('YmdHis') . 'secret_string12344657';
         // $hash = md5($tmp);
         // $hashedPassword = md5($newPassword . ENCRYPTION_SALT . $hash);
+        // Upload to Git
 
 
 
