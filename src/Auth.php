@@ -14,7 +14,6 @@ class Auth
         $userObj->findBy('username', $username);
 
         if (property_exists($userObj, 'id')) {
-            // if ($userObj->password == md5($password . ENCRYPTION_SALT . $userObj->password_hash)) {
             if (password_verify($password,  $userObj->password)) {
                 // all is good
                 return true;
